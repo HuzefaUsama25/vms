@@ -29,6 +29,13 @@
   await new Promise(resolve => setTimeout(resolve, 2000));
 
   // 5. Click the send button
-  const sendButton = document.querySelector('button[type="submit"]');
-  if (sendButton) sendButton.click();
+  function clickSendButton() {
+    // Find all divs and spans
+    const elements = Array.from(document.querySelectorAll('div,span'));
+    // Find the one with text "Send"
+    const sendBtn = elements.find(el => el.textContent.trim() === "Send" && el.offsetParent !== null);
+    if (sendBtn) sendBtn.click();
+    else alert("Send button not found! Please check the selector.");
+  }
+  clickSendButton();
 })();
